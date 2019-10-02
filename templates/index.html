@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<html>
+<head>
+	    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Aplicacion</title>
+</head>
+<body>
+
+
+   <div id ="gif"></div>
+	 <div class="container">
+        <div style="display: inline-block;">
+        <br>
+        <br>
+          <div class="row">
+          	
+            <div class="col-md-4" >
+
+                <h1>WAVERINET</h1>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+
+            <div class="col-md-4" >
+
+                 <a href="http://www.ceiec.es/en/"><img height="74" width="226" src="https://storage.googleapis.com/images-waverinet/ceiec.jpg" alt="CEIEC" align="right"></a> 
+                
+            </div>
+            
+        </div>
+
+       	<br>
+        <p class="text-justify">
+          Introducing Waverinet, a Deep Learning model capable of restoring damaged audios. Now, you can try it yourself. You only need to upload an audio and on this website you can damage it and repair
+          it using Waverinet. The audio can be damaged in three different ways: losing information, adding noise or decreasing the quality. To upload the audio you have two options. You can press the
+          "Random Audio" button to try a random audio, or you can upload your own file. To upload your own file there are a couple of things you need to keep in mind: The audio has to be in WAV format.
+          It has to be in 16kHz quality, have 16-bit accuracy and be Mono. If you don't know if your audio meets these requirements we recommend you to use the <a href="https://audio.online-convert.com/es/convertir-a-wav">this</a> website. There, just drag your audio, select
+          "resolution bits" to 16 bits, "sampling rate" to 16000 Hz and "audio channels" to Mono. After this you will be ready to download the WAV with the required specifications and upload it here.
+          <br>
+          <br>
+          Once you have uploaded an audio or selected a random one, you must select the way you want to damage it and press the "Damage" button. Wait while the audio is damaged, as this may take some time.
+          Once it's finished you'll be able to hear the damaged audio. After that, press the "Restore" button. By doing this Waverinet will do its magic... wait while the audio is restored and voila!
+          You will hear the restored audio.
+          Caution, if you want to try again with another audio, before uploading it you must press the "Restart" button.
+          Waverinet has been developed as a result of a research done at the <a href="http://www.ceiec.es/en/">CEIEC</a>.
+        </p>
+        <br>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Source file</div>
+                    <div class="card-body">                     
+                            <div class="form-group">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <input class="form-control-file" id="audio-selector" type="file" >
+                                </div>
+                                <div class="col-md-4">
+                                  <audio controls="controls" class="form-control-lg" id="selected-audio" src=""></audio>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button class="btn btn-primary btn-block" id="random-audio">Random Audio</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <audio controls="controls" class="form-control-lg" id="selectedrandom-audio" src=""></audio>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                               
+                                <div class="row">
+                                    <div class="col-md-4">
+                            
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-dark btn-block" id="restart" onclick="Restartfunction()">Restart</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Damaged and Restored files</div>
+                    <div class="card-body">
+                        
+                            <h5>Select an option to damage the audio.</h5>
+                            <select class="custom-select custom-select-lg mb-3" onchange="danio(this.value)">
+                            	<option value="" selected disabled hidden>Choose here</option>
+                                <option value="1">Option 1: Loss of information</option>
+                                <option value="2">Option 2: Add noise</option>
+                                <option value="3">Option 3: Decrease quality</option>
+                                <option value="4">Option 4: Already damaged audio</option>
+                            </select>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                <button class="btn btn-danger btn-block" id="damaged-button" disabled>Damage</button>
+                                </div>
+                                <div class="col-md-8">
+                                    <audio controls="controls" class="form-control-lg" id="damaged-audio" src=""></audio>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button class="btn btn-success btn-block" id="restored-button" disabled>Restore</button>
+                                </div>
+                                <div class="col-md-8">
+                                    <audio controls="controls" class="form-control-lg" id="restored-audio" src="" ></audio>
+                                </div>
+                            </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+  <style>
+  #gif {
+      background: url('https://storage.googleapis.com/images-waverinet/gif.gif') no-repeat center center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 9999999;
+  }
+  </style>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src ="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+
+    $(window).ready(hideLoader);
+    function hideLoader() {
+    $('#gif').hide();
+    }
+
+    function showLoader() {
+    $('#gif').show();
+    }
+
+    function Restartfunction() {
+
+      window.location.reload()
+
+      $.post("http://127.0.0.1:5000/waverinetreset",function(response){
+
+        console.log("borrados");
+       
+      });
+    
+    }
+
+		var typeaux;
+		function danio(type){
+			console.log(type);
+			typeaux = type;
+		}
+			
+		let dataURL2;
+		let base64Image2;
+		$("#audio-selector").change(function() {
+      random = 0;
+			console.log('el audio es random 1 si 0 no-->',random)
+
+			let reader = new FileReader();
+			console.log("holi");
+			reader.onload = function(e){
+
+				dataURL2 = reader.result;
+				$('#selected-audio').attr("src",dataURL2);
+				$('#restored-audio').attr("src","");
+				$('#damaged-audio').attr("src","");
+				$('#selectedrandom-audio').attr("src","");
+				base64Image2 = dataURL2.replace("data:audio/wav;base64,","");
+        document.getElementById('damaged-button').disabled=false;
+				
+			}
+			reader.readAsDataURL($("#audio-selector")[0].files[0]);
+		});	
+
+		$("#restored-button").click(function(event){
+	
+			$.post("http://127.0.0.1:5000/waverinetrestore",function(response){
+
+				console.log(response.prediction.nombre_restored)
+				$('#restored-audio').attr("src",response.prediction.nombre_restored.toString());
+			});
+		
+		});
+    
+		$("#damaged-button").click(function(event){
+			$(window).ready(showLoader);
+
+			console.log(typeaux);
+			console.log(URLrandomaudio);
+			console.log('el audio es random 1 si 0 no-->',random)
+      let url;
+			let message = {
+					audio: base64Image2,
+					tipo: typeaux,
+					randomsi_no: random
+			}	
+  
+			
+			$.post("http://127.0.0.1:5000/waverinetdamage",JSON.stringify(message),function(response){
+          
+					console.log('el audio dañado es:',response.prediction.nombre_damaged.toString());
+
+          url = response.prediction.nombre_damaged.toString();
+				  console.log("la url es:", url);
+          $('#damaged-audio').attr("src",url);
+          document.getElementById('restored-button').disabled=false;     
+          $(window).ready(hideLoader);
+			});
+            
+      console.log("la url es:", url);
+      $('#damaged-audio').attr("src",url);
+
+
+		});
+
+
+		var random;
+		var URLrandomaudio;
+
+		$("#random-audio").click(function(event){
+          
+      $('#selected-audio').attr("src","");
+      $('#restored-audio').attr("src","");
+      $('#damaged-audio').attr("src","");
+			random = 1;
+			console.log('el audio es random 1 si 0 no-->',random)
+			numberrandom = Math.floor(Math.random()*(9-0+1)+0);
+			console.log('el audio random es el: ',numberrandom)
+            https://storage.googleapis.com/images-waverinet/gif.gif
+			URLrandomaudio = "https://storage.googleapis.com/images-waverinet/"+numberrandom.toString()+".wav"
+			base64Image2 = 	URLrandomaudio
+			$('#selectedrandom-audio').attr("src",URLrandomaudio);	
+			console.log("url del random: ",base64Image2);
+      document.getElementById('damaged-button').disabled=false;
+
+		});
+
+
+	</script>
+
+</body>
+</html>
